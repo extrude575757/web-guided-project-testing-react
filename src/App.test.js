@@ -11,6 +11,7 @@ jest.mock('./api/fetchMissions');
 test("App renders", () => {
   render(<App />);
 });
+const h = () =>{
 
 test("App fetches and renders missions data", async () => {
   // tell the test system what we want the mission data to return
@@ -21,7 +22,9 @@ test("App fetches and renders missions data", async () => {
   fireEvent.click(button);
 
   getByText(/we are fetching data/i);
-  await wait()
+  // await wait() <--- Been deprecated Now use waitFor
+  await waitFor(() =>{h()})
 
   expect(queryAllByTestId("mission")).toHaveLength(2);
 })
+}
